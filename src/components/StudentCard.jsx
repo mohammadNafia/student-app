@@ -27,12 +27,13 @@ import {
 } from "@/components/ui/select";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Trash, Edit, UserPlus, Loader, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trash, Edit, UserPlus, Loader, ChevronLeft, ChevronRight, Search, Filter } from "lucide-react";
 
 export default function StudentCard() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   
   // table state
   const [currentPage, setCurrentPage] = useState(0);
@@ -134,17 +135,41 @@ export default function StudentCard() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // filter logic
+  const filteredList = list.filter(item => 
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // pagination calc
   const start = currentPage * pageSize;
   const end = start + pageSize;
-  const displayList = list.slice(start, end);
+  const displayList = filteredList.slice(start, end);
 
   return (
     <div className="w-full">
-      <div className="flex justify-end mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        {/* Search & Filter Bar */}
+        <div className="flex items-center gap-2 w-full max-w-sm">
+          <div className="relative w-full">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input 
+              placeholder="Search" 
+              className="pl-10 h-10 rounded-lg border-gray-200 bg-white"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(0);
+              }}
+            />
+          </div>
+          <Button variant="outline" size="icon" className="h-10 w-10 bg-[#A6C59C] border-none hover:opacity-90 transition-all shrink-0">
+            <Filter className="h-4 w-4 text-[#203021]" />
+          </Button>
+        </div>
+
         <Button 
           onClick={() => { setForm({name:"", avatar:"", createdAt:""}); setShowAdd(true); }}
-          className="bg-[#A5C89E] hover:bg-[#D8E983] text-black font-semibold"
+          className="bg-[#A6C59C] hover:opacity-90 text-black font-semibold h-10"
         >
           <UserPlus className="mr-2 h-4 w-4" /> Add New Student
         </Button>
@@ -193,10 +218,10 @@ export default function StudentCard() {
                       <TableCell className="text-gray-500">{new Date(item.createdAt).toLocaleDateString()}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="outline" size="icon" className="h-8 w-8 bg-[#D8E983]/20 hover:bg-[#D8E983]" onClick={() => openEdit(item)}>
+                          <Button variant="outline" size="icon" className="h-8 w-8 hover:bg-[#A6C59C]/20" onClick={() => openEdit(item)}>
                             <Edit className="h-4 w-4" />
                           </Button>
-                          <Button variant="outline" size="icon" className="h-8 w-8 hover:bg-red-100 text-red-500 border-red-100" onClick={() => removeStudent(item.id)}>
+                          <Button variant="outline" size="icon" className="h-8 w-8 hover:bg-[#F2EAD5] text-red-800 border-red-100" onClick={() => removeStudent(item.id)}>
                             <Trash className="h-4 w-4" />
                           </Button>
                         </div>
@@ -223,14 +248,14 @@ export default function StudentCard() {
               </div>
               
               <span className="text-xs text-gray-500">
-                {start + 1}-{Math.min(end, list.length)} of {list.length}
+                {start + 1}-{Math.min(end, filteredList.length)} of {filteredList.length}
               </span>
 
               <div className="flex gap-1">
                 <Button variant="ghost" size="icon" className="h-8 w-8" disabled={currentPage === 0} onClick={() => setCurrentPage(p => p - 1)}>
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8" disabled={end >= list.length} onClick={() => setCurrentPage(p => p + 1)}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" disabled={end >= filteredList.length} onClick={() => setCurrentPage(p => p + 1)}>
                   <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
@@ -255,7 +280,7 @@ export default function StudentCard() {
           </div>
           <DialogFooter>
             <Button variant="secondary" onClick={() => setShowAdd(false)}>Cancel</Button>
-            <Button className="bg-[#A5C89E] text-black" onClick={handleSave}>Confirm</Button>
+            <Button className="bg-[#A6C59C] text-black" onClick={handleSave}>Confirm</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -275,7 +300,7 @@ export default function StudentCard() {
           </div>
           <DialogFooter>
             <Button variant="secondary" onClick={() => setShowEdit(false)}>Cancel</Button>
-            <Button className="bg-[#A5C89E] text-black" onClick={handleUpdate}>Save Changes</Button>
+            <Button className="bg-[#A6C59C] text-black" onClick={handleUpdate}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -297,7 +322,7 @@ export default function StudentCard() {
             <Button variant="outline" onClick={() => setShowDelete(false)}>
               Cancel
             </Button>
-            <Button className="bg-red-500 hover:bg-red-600 text-white" onClick={confirmDelete}>
+            <Button className="bg-[#F2EAD5] hover:opacity-90 text-red-900 border border-red-100" onClick={confirmDelete}>
               Yes, Delete
             </Button>
           </DialogFooter>

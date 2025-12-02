@@ -14,7 +14,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#f9fbf8]">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#F3F4E4]">
       <div className="max-w-5xl w-full">
         {/* Top animations for content */}
         <motion.div
@@ -33,7 +33,7 @@ const Landing = () => {
 
           <Button 
             onClick={goToDashboard}
-            className="h-14 px-10 text-lg font-semibold bg-[#A5C89E] text-[#1a2b1b] hover:bg-[#D8E983] transition-all rounded-xl"
+            className="h-14 px-10 text-lg font-semibold bg-[#A6C59C] text-[#1a2b1b] hover:opacity-90 transition-all rounded-xl"
           >
             Get Started <ArrowRight className="ml-2 w-5 h-5" />
           </Button>

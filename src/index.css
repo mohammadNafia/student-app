@@ -42,48 +42,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 108 30% 64%; 
-    --primary-foreground: 210 40% 98%;
-    --secondary: 68 56% 75%; 
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 58 100% 85%; 
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --background: 66 31% 92%;     /* #F3F4E4 */
+    --foreground: 128 17% 21%;
+    --card: 0 0% 100%;           /* #FFFFFF */
+    --card-foreground: 128 17% 21%;
+    --popover: 0 0% 100%;        /* #FFFFFF */
+    --popover-foreground: 128 17% 21%;
+    --primary: 106 26% 69%;      /* #A6C59C */
+    --primary-foreground: 66 31% 20%;
+    --secondary: 47 44% 89%;     /* #F2EAD5 - Replacing "red things" color */
+    --secondary-foreground: 47 44% 20%;
+    --muted: 66 20% 85%;
+    --muted-foreground: 66 10% 40%;
+    --accent: 47 44% 89%;
+    --accent-foreground: 66 17% 21%;
+    --destructive: 47 44% 89%;   /* User requested this for "red things" */
+    --destructive-foreground: 0 0% 20%;
+    --border: 66 20% 80%;
+    --input: 66 20% 80%;
+    --ring: 106 26% 69%;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --background: 66 31% 10%;
+    --foreground: 66 31% 92%;
+    --card: 66 31% 12%;
+    --card-foreground: 66 31% 92%;
+    --popover: 66 31% 12%;
+    --popover-foreground: 66 31% 92%;
+    --primary: 106 26% 69%;
+    --primary-foreground: 66 31% 10%;
+    --secondary: 47 44% 30%;
+    --secondary-foreground: 66 31% 92%;
+    --muted: 66 20% 20%;
+    --muted-foreground: 66 10% 70%;
+    --accent: 47 44% 30%;
+    --accent-foreground: 66 31% 92%;
+    --destructive: 47 44% 30%;
+    --destructive-foreground: 66 31% 92%;
+    --border: 66 31% 20%;
+    --input: 66 31% 20%;
+    --ring: 106 26% 69%;
   }
 }
 

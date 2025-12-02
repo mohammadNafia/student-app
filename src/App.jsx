@@ -10,7 +10,7 @@ function App() {
       <Landing />
       
       {/* Main dashboard area */}
-      <div id="dashboard-section" className="py-16 bg-[#fdfdf6]">
+      <div id="dashboard-section" className="py-16 bg-[#F3F4E4]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl font-bold text-[#203021]">
